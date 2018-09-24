@@ -8,5 +8,5 @@ use professionalweb\IntegrationHub\IntegrationHubCommon\Interfaces\Services\Subs
  */
 interface MailsenderSubsystem extends Subsystem
 {
-
+    public const SUBSYSTEM_ID = 'payment-link-mail';
 }

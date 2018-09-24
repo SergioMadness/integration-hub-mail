@@ -17,9 +17,11 @@ class NewEventListener
 
     public function handle(EventToProcess $eventToProcess)
     {
-        return $this->getMailsenderSubsystem()
-            ->setProcessOptions($eventToProcess->getProcessOptions())
-            ->process($eventToProcess->getEventData());
+        return $eventToProcess->getProcessOptions()->getSubsystemId() === MailsenderSubsystem::SUBSYSTEM_ID ?
+            $this->getMailsenderSubsystem()
+                ->setProcessOptions($eventToProcess->getProcessOptions())
+                ->process($eventToProcess->getEventData()) :
+            $eventToProcess->getEventData();
     }
 
     /**
